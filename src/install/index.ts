@@ -13,8 +13,7 @@ import {
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 
-import { getJsonFile } from '../utils';
-import { getMainPath } from '../project-utils';
+import { getJsonFile, getMainPath } from '../utils';
 import { Schema } from './schema';
 
 export default function install(options: Schema): Rule {

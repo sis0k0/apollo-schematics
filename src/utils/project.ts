@@ -1,6 +1,6 @@
 import { Tree, SchematicsException } from "@angular-devkit/schematics";
 
-import { getJsonFile } from "./utils";
+import { getJsonFile } from ".";
 
 export function getMainPath(host: Tree, name?: string) {
     const project = getProject(host, name);

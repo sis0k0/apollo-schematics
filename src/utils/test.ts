@@ -2,7 +2,7 @@ import { join } from "path";
 
 import { SchematicTestRunner, UnitTestTree } from "@angular-devkit/schematics/testing";
 
-const collectionPath = join(__dirname, 'collection.json');
+const collectionPath = join(__dirname, '../collection.json');
 
 export function createTestApp(appOptions = {}): UnitTestTree {
   const baseRunner = new SchematicTestRunner('schematics', collectionPath);

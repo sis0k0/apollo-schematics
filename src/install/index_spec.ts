@@ -4,7 +4,7 @@ import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
 
-import { createTestApp } from '../test-utils';
+import { createTestApp } from '../utils';
 
 const collectionPath = path.join(__dirname, '../collection.json');
 

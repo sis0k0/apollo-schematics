@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "install": {
+      "description": "Adds Apollo Angular to the application.",
+      "factory": "./install"
+    }
+  }
+}

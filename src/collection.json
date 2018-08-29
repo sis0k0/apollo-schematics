@@ -3,7 +3,8 @@
   "schematics": {
     "install": {
       "description": "Adds Apollo Angular to the application.",
-      "factory": "./install"
+      "factory": "./install",
+      "schema": "./install/schema.json"
     }
   }
 }

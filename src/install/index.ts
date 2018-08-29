@@ -1,11 +1,26 @@
-import { Rule, SchematicContext, Tree, chain, SchematicsException } from '@angular-devkit/schematics';
+import { dirname } from 'path';
+import {
+  apply,
+  chain,
+  url,
+  template,
+  Tree,
+  Rule,
+  SchematicContext,
+  mergeWith,
+  move,
+} from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 
 import { getJsonFile } from '../utils';
+import { getMainPath } from '../project-utils';
+import { Schema } from './schema';
 
-export default function install(_options: any): Rule {
+export default function install(options: Schema): Rule {
   return chain([
     addDependencies(),
+    addSetupFiles(options),
   ]);
 }
 
@@ -43,4 +58,19 @@ function addDependencies() {
 
     return host;
   }
+}
+
+function addSetupFiles(options: Schema) {
+  return (host: Tree) => {
+    const mainPath = getMainPath(host, options.project);
+    const appModulePath = getAppModulePath(host, mainPath);
+    const appModuleDirectory = dirname(appModulePath);
+
+    const templateSource = apply(url('./files'), [
+      template({}),
+      move(appModuleDirectory),
+    ]);
+
+    return mergeWith(templateSource);
+  };
 }

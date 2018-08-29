@@ -1,4 +1,5 @@
 import { dirname } from 'path';
+
 import {
   apply,
   chain,
@@ -15,17 +16,21 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 
 import { getJsonFile, getMainPath } from '../utils';
 import { Schema } from './schema';
+import { addModuleImportToRootModule } from '../utils/ast';
 
 export default function install(options: Schema): Rule {
   return chain([
     addDependencies(),
     addSetupFiles(options),
+    importSetupModule(options),
+    importHttpClientModule(options),
   ]);
 }
 
 /**
  * Add all necessary node packages
  * as dependencies in the package.json
+ * and installs them by running `npm install`.
  */
 function addDependencies() {
   return (host: Tree, context: SchematicContext) => {
@@ -71,5 +76,29 @@ function addSetupFiles(options: Schema) {
     ]);
 
     return mergeWith(templateSource);
+  };
+}
+
+function importSetupModule(options: Schema) {
+  return (host: Tree) => {
+    addModuleImportToRootModule(
+      host,
+      'GraphQLModule',
+      './graphql.module',
+      options.project,
+    );
+
+    return host;
+  };
+}
+
+function importHttpClientModule(options: Schema) {
+  return (host: Tree) => {
+    addModuleImportToRootModule(
+      host,
+      'HttpClientModule',
+      '@angular/common/http',
+      options.project,
+    )
   };
 }

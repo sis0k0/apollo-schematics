@@ -49,7 +49,6 @@ describe('Apollo Install schematic', () => {
     const content = getFileContent(tree, rootModulePath);
 
     expect(content).toMatch(/import { GraphQLModule } from '.\/graphql.module'/);
-    expect(content).toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+GraphQLModule\r?\n/m);
   });
 
   it('should import HttpClientModule to the root module', () => {
@@ -58,6 +57,5 @@ describe('Apollo Install schematic', () => {
     const content = getFileContent(tree, rootModulePath);
 
     expect(content).toMatch(/import { HttpClientModule } from '@angular\/common\/http'/);
-    expect(content).toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+HttpClientModule\r?\n/m);
   });
 });

@@ -4,7 +4,8 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "pretest": "npm run build",
+    "test": "jasmine --config=jasmine-config/jasmine.json"
   },
   "keywords": [
     "schematics"
@@ -19,5 +20,9 @@
     "@types/node": "^8.0.31",
     "jasmine": "^2.8.0",
     "typescript": "^2.5.2"
+  },
+  "devDependencies": {
+    "@schematics/angular": "^0.7.5",
+    "jasmine-spec-reporter": "^4.2.1"
   }
 }

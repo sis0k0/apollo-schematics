@@ -12,7 +12,7 @@ function getProject(host: Tree, name?: string) {
     if (name) {
         const project = config.projects[name];
         if (!project) {
-            throw new SchematicsException(`Couldn't file project ${name}`);
+            throw new SchematicsException(`Couldn't find project ${name}`);
         }
 
         return config.projects[name];
